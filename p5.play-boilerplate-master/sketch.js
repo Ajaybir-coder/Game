@@ -1,10 +1,21 @@
 var bgImage, bg1;
 var logoImg, logo;
 var gameState = 0;
+var b1;
+var boyI, ScorpI, snakeI, mummyI, lionI, diamondI, jinI, trackI;
+var boy;
 
 function preload(){
   bgImage = loadImage("ps/bg1.jpg");
   logoImg = loadImage("ps/logo.jpg");
+  boyI = loadImage("ps/boy.png")
+  ScorpI = loadImage("ps/scorpion.png");
+  mummyI = loadImage("ps/mummy.png");
+  snakeI = loadImage("ps/snake.png");
+  lionI = loadImage("ps/egypt.png");
+  diamondI = loadImage("ps/diamond.png");
+  jinI = loadImage("ps/jin.png");
+  trackI = loadImage("ps/path2.jpg");
 }
 function setup() {
   var canvas = createCanvas(displayWidth, displayHeight);
@@ -32,9 +43,37 @@ function draw() {
     fill("red");
     text("CAUTION: Don't touch any of obstacle or you have to start again!!!",displayWidth/2-550,displayHeight/2+70);
     
-    this.button = createButton('Perss To Start');
-    this.button.position(displayWidth/2-700,displayWidth/2+100);
+   
+    b1 = createSprite(displayWidth/2,displayHeight/2+110,80,40);
+    b1.shapeColor = "black";
+    
+    
+    if(mousePressedOver(b1)){
+      gameState = 1;
+    }
+
+    if(gameState === 1){
+      logo.visible = false;
+      b1.visible = false;
+      //bg1 = createSprite(displayWidth/4,displayHeight/4);
+     // bg1.addImage(trackI)
+      image(trackI,displayWidth/300,displayHeight/500,displayWidth,displayHeight);
+      //camera.position.x = displayWidth/2;
+      //camera.position.y = displayHeight/2;
+
+      boy = createSprite(displayWidth/2-600,displayHeight/2+200);
+      boy.addImage(boyI);
+      boy.scale = 0.65;
+      
+    }
   }
     
   drawSprites();
+  
+ if(gameState === 0){
+    textSize(15);
+    fill("white");
+    text("START",displayWidth/2-20,displayHeight/2+110);
+ }
+  
 }
